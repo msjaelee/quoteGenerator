@@ -1,2 +1,2 @@
-# quoteGenerator
- A random quote generator app
+Quote Generator Project
+A random quote generator app
