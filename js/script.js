@@ -11,9 +11,12 @@ project 1 - A Random Quote Generator
  * `quotes` array
  ***/
 
-// Create data stucture using an Array and store in a variable named 'quotes'.
-// Added 10 quote objects into array
-// Created properties for each object titled: 'quote', 'source', 'citation', 'year'.
+/*
+- Created data stucture using an Array and stored in a variable named 'quotes'.
+- Added 10 quote objects into array
+- Created properties for each object titled: 'quote', 'source', 'citation', 'year'.
+*/
+
 const quotes = [];
 
 quotes.push(
@@ -78,21 +81,31 @@ quotes.push(
  * `getRandomQuote` function
  ***/
 
-// getRandomQuote function assigns a random integer between 0 and 9 to the variable 'randomNumber'.
-// randomNumber is used to select an index position on the 'quotes' array.
-// randomQuote returns a random object from the 'quotes' array.
+/*
+ getRandomQuote function assigns a random integer between 0 and 9 to the variable 'randomNumber'.
+ randomNumber is used to select an index position on the 'quotes' array.
+ randomQuote returns a random object from the 'quotes' array. 
+*/
 
-const getRandomQuote = () => {
+function getRandomQuote() {
   let randomNumber = Math.floor(Math.random() * 10);
   let randomQuote = quotes[randomNumber];
   return randomQuote;
-};
+}
 
 /***
  * `printQuote` function
  ***/
 
-const printQuote = () => {
+/* 
+ - The printQuote function calls the getRandomQuote function and stores the random quote object as 'quoteToPrint'.
+ - Each property from the quoteToPrint object is referenced and added to the 'html' string.
+ - Two 'if' comparisons are used to check if the 'citation' or 'year' property exist in the object.
+ - If the object contains the relevant property, it's value is added to the 'html' string.
+ - The printQuote function returns a string of html containing the random quote properties.
+ */
+
+function printQuote() {
   let quoteToPrint = getRandomQuote();
   let html = `
   <p class="quote"> ${quoteToPrint.quote} </p>
@@ -106,7 +119,12 @@ const printQuote = () => {
   }
   html += `</p>`;
   return html;
-};
+}
+
+// I have added this console.log to try and figure out why the button isn't working.
+// Sometimes the log matches the quote on the page, sometimes it doesn't?
+
+console.log(printQuote());
 
 document.getElementById("quote-box").innerHTML = printQuote();
 
