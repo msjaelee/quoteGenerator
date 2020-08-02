@@ -29,28 +29,33 @@ quotes.push(
   {
     quote: "When the whole world is silent, even one voice becomes powerful.",
     source: "Malala Yousafzai",
+    tags: "** Inspirational **",
   },
   {
     quote: "You cannot shake hands with a clenched fist.",
     source: "Indira Gandhi",
     citation: "Christian Science Monitor",
     year: 1982,
+    tags: "** Wisdom **",
   },
   {
     quote:
       "We have all a better guide in ourselves, if we would attend to it, than any other person can be.",
     source: "Jane Austen",
     citation: "Mansfield Park",
+    tags: "** Wisdom **",
   },
   {
     quote:
       "Success is liking yourself, liking what you do, and liking how you do it.",
     source: "Maya Angelou",
+    tags: "** Inspirational **",
   },
   {
     quote:
       "If you find serenity and happiness, some people may be jealous. Be happy anyway.",
     source: "Mother Teresa",
+    tags: "** Wisdom **",
   },
   {
     quote:
@@ -68,6 +73,7 @@ quotes.push(
   {
     quote: "One can never consent to creep when one feels an impulse to soar.",
     source: "Helen Keller",
+    tags: "** Inspirational **",
   },
   {
     quote:
@@ -102,7 +108,7 @@ function getRandomQuote() {
  - Each property from the quoteToPrint object is referenced and added to the 'html' string.
  - Two 'if' comparisons are used to check if the 'citation' or 'year' property exist in the object.
  - If the object contains the relevant property, it's value is added to the 'html' string.
- - The printQuote function returns a string of html containing the random quote properties.
+ - The printQuote function returns an html sting that is added to the index.html file using 'document.getElementById'.
  */
 
 function printQuote() {
@@ -117,16 +123,20 @@ function printQuote() {
   if (quoteToPrint.hasOwnProperty("year")) {
     html += `<span class="year"> ${quoteToPrint.year} </span>`;
   }
+  if (quoteToPrint.hasOwnProperty("tags")) {
+    html += `<span class="year"> ${quoteToPrint.tags} </span>`;
+  }
   html += `</p>`;
-  return html;
+  return (document.getElementById("quote-box").innerHTML = html);
 }
 
-// I have added this console.log to try and figure out why the button isn't working.
-// Sometimes the log matches the quote on the page, sometimes it doesn't?
-
-console.log(printQuote());
+// Uses 'printQuote' function to load first random quote on page
 
 document.getElementById("quote-box").innerHTML = printQuote();
+
+// Sets 7 second interval for quotes to change automatically
+
+setInterval(printQuote, 7000);
 
 /***
  * click event listener for the print quote button
@@ -136,3 +146,13 @@ document.getElementById("quote-box").innerHTML = printQuote();
 document
   .getElementById("load-quote")
   .addEventListener("click", printQuote, false);
+
+// Change background to random color every 7 seconds.
+
+setInterval(function changeColor() {
+  let r = Math.floor(Math.random() * 256) + 1;
+  let g = Math.floor(Math.random() * 256) + 1;
+  let b = Math.floor(Math.random() * 256) + 1;
+  newColor = `rgb(${r}, ${g}, ${b})`;
+  return (document.body.style.background = newColor);
+}, 7000);
